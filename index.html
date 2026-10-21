@@ -1018,12 +1018,25 @@
     }
 
     (function () {
+        // L'URL peut forcer la langue : index.html?lang=en
         let langue = 'fr';
         try {
-            langue = localStorage.getItem('cv-lang') || 'fr';
+            const param = new URLSearchParams(window.location.search).get('lang');
+            if (param) {
+                langue = param.toLowerCase();
+            }
         } catch (erreur) {
             langue = 'fr';
         }
+
+        if (!langue) {
+            try {
+                langue = localStorage.getItem('cv-lang') || 'fr';
+            } catch (erreur) {
+                langue = 'fr';
+            }
+        }
+
         if (!['fr', 'en'].includes(langue)) {
             langue = 'fr';
         }
