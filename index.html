@@ -422,10 +422,23 @@
             .contact-pill { padding: 6px 14px !important; font-size: 0.75rem !important; }
 
             .main-content {
+                display: block !important;
+                column-count: 2;
+                column-gap: 9mm;
                 padding: 20px 30px !important;
                 gap: 40px !important;
             }
-            section { margin-bottom: 15px !important; }
+
+            /* Les deux colonnes de l'ecran deviennent un simple flux sur
+               deux colonnes : le contenu se repartit sur toutes les pages
+               au lieu de repousser le corps entier a la page suivante. */
+            .left-column, .right-column { display: contents !important; }
+
+            section { margin-bottom: 15px !important; break-inside: auto !important; }
+
+            /* Un titre de section ne doit jamais rester seul en bas d'une
+               colonne, il part avec le contenu qui suit. */
+            .section-title { break-after: avoid; page-break-after: avoid; }
             .section-title { font-size: 1rem !important; margin-bottom: 10px !important; }
 
             .item-block { margin-bottom: 12px !important; }
@@ -442,7 +455,7 @@
             .project-card .item-title { font-size: 0.82rem !important; }
             .project-card .item-subtitle { font-size: 0.75rem !important; }
 
-            section, .item-block, .project-card { page-break-inside: avoid; break-inside: avoid; }
+            .item-block, .project-card { page-break-inside: avoid; break-inside: avoid; }
         }
     </style>
 </head>
@@ -574,9 +587,9 @@
             <div class="right-column">
 
                 <section>
-                    <div class="section-title">Expérience professionnelle</div>
+                    <div class="item-block section-first"><div class="section-title">Expérience professionnelle</div>
 
-                    <div class="item-block">
+                    
                         <div class="item-title">Stagiaire en développement web</div>
                         <div class="item-subtitle">RIGO SARL, Ouagadougou | Août - Septembre 2025</div>
                         <ul class="exp-details">
@@ -621,9 +634,9 @@
                 </section>
 
                 <section>
-                    <div class="section-title">Formation</div>
+                    <div class="item-block section-first"><div class="section-title">Formation</div>
 
-                    <div class="item-block">
+                    
                         <div class="item-title">Licence en technologie du génie informatique</div>
                         <div class="item-subtitle">Université Aube Nouvelle | 2026</div>
                     </div>
@@ -851,9 +864,9 @@
             <div class="right-column">
 
                 <section>
-                    <div class="section-title">Professional experience</div>
+                    <div class="item-block section-first"><div class="section-title">Professional experience</div>
 
-                    <div class="item-block">
+                    
                         <div class="item-title">Web development intern</div>
                         <div class="item-subtitle">RIGO SARL, Ouagadougou | August - September 2025</div>
                         <ul class="exp-details">
@@ -898,9 +911,9 @@
                 </section>
 
                 <section>
-                    <div class="section-title">Education</div>
+                    <div class="item-block section-first"><div class="section-title">Education</div>
 
-                    <div class="item-block">
+                    
                         <div class="item-title">Bachelor in Computer Engineering Technology</div>
                         <div class="item-subtitle">Aube Nouvelle University | 2026</div>
                     </div>
