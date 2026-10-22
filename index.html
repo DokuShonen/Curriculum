@@ -423,18 +423,18 @@
 
             .main-content {
                 display: block !important;
-                column-count: 2;
-                column-gap: 9mm;
+                column-count: 1;
                 padding: 20px 30px !important;
                 gap: 40px !important;
             }
 
-            /* Les deux colonnes de l'ecran deviennent un simple flux sur
-               deux colonnes : le contenu se repartit sur toutes les pages
-               au lieu de repousser le corps entier a la page suivante. */
+            /* Les deux colonnes de l'ecran forment un seul flux a
+               l'impression : les experiences se lisent dans l'ordre,
+               de la plus ancienne a la plus recente, et la formation
+               suit sans jamais revenir en arriere. */
             .left-column, .right-column { display: contents !important; }
 
-            section { margin-bottom: 15px !important; break-inside: auto !important; }
+            section { margin-bottom: 15px !important; break-inside: avoid !important; }
 
             /* Un titre de section ne doit jamais rester seul en bas d'une
                colonne, il part avec le contenu qui suit. */
