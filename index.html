@@ -421,12 +421,21 @@
             .contact-bar { margin-top: -10px !important; gap: 10px !important; }
             .contact-pill { padding: 6px 14px !important; font-size: 0.75rem !important; }
 
+            /* L'impression reprend la mise en page de l'ecran : deux
+               colonnes, competences a gauche, parcours a droite. Les
+               sections peuvent se poursuivre sur la page suivante sans
+               laisser de grands vides, mais un bloc reste insecable. */
             .main-content {
+                display: flex !important;
+                flex-direction: row !important;
                 padding: 20px 30px !important;
-                gap: 40px !important;
+                gap: 26px !important;
             }
-            section { margin-bottom: 15px !important; }
-            .section-title { font-size: 1rem !important; margin-bottom: 10px !important; }
+            .left-column { flex: 1 1 33% !important; max-width: 35% !important; }
+            .right-column { flex: 2 1 0 !important; min-width: 0 !important; }
+
+            section { margin-bottom: 15px !important; break-inside: auto !important; }
+            .section-title { font-size: 1rem !important; margin-bottom: 10px !important; break-after: avoid !important; }
 
             .item-block { margin-bottom: 12px !important; }
             .item-title { font-size: 0.9rem !important; margin-bottom: 1px !important; }
@@ -442,7 +451,7 @@
             .project-card .item-title { font-size: 0.82rem !important; }
             .project-card .item-subtitle { font-size: 0.75rem !important; }
 
-            section, .item-block, .project-card { page-break-inside: avoid; break-inside: avoid; }
+            .item-block, .project-card { page-break-inside: avoid; break-inside: avoid; }
         }
     </style>
 </head>
