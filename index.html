@@ -8,332 +8,281 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Système visuel
-           - encre profonde et indigo pour le seul accent
-           - Sora pour les titres, Source Sans 3 pour le texte,
-             JetBrains Mono pour les lignes de contexte (lieu, dates)
-           - une seule famille de formes : rectangles a 4px, pastilles
-             rondes reservees a la photo */
+
+        /* =======================================================
+           Direction visuelle : CV marron et blanc
+           fond blanc, marron camel pour les titres et les dates,
+           encre chaude pour le texte, filets paille en decoration.
+           ======================================================= */
         :root {
-            --primary-color: #1b1450;
-            --primary-light: #342a7a;
-            --ink: #14121f;
-            --ink-soft: #4d4b5c;
-            --bg-header: #f4f4f8;
-            --text-color: #1f1d2b;
-            --text-light: #4d4b5c;
+            --brown: #c8aa8c;
+            --brown-soft: #d8c0b0;
+            --brown-deep: #a5825f; /* etats interactifs uniquement */
+            --ink: #302828;
+            --ink-soft: #6f6660;
+            --line: #e4ddd6;
+            --surface: #faf7f4;
             --white: #ffffff;
-            --line: #e2e1ea;
-            --surface: #f6f6f9;
             --radius: 4px;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Source Sans 3', sans-serif;
-            background-color: #e7e7ec;
-            color: var(--text-color);
+            font-family: 'Raleway', sans-serif;
+            background-color: #ebe6e0;
+            color: var(--ink);
             line-height: 1.55;
             padding: 48px 24px;
         }
 
         .cv-container {
-            max-width: 940px;
+            max-width: 980px;
             margin: 0 auto;
             background-color: var(--white);
-            box-shadow: 0 1px 2px rgba(20, 18, 31, 0.06), 0 30px 60px -40px rgba(20, 18, 31, 0.45);
-            overflow: hidden;
-            position: relative;
-            padding-bottom: 40px;
+            box-shadow: 0 1px 2px rgba(48, 40, 40, 0.05), 0 30px 60px -40px rgba(48, 40, 40, 0.5);
+            padding-bottom: 30px;
         }
+
+        [hidden] { display: none !important; }
 
         /* ---------- Commutateur de langue ---------- */
         .lang-bar {
             display: flex;
             justify-content: flex-end;
             gap: 6px;
-            padding: 20px 56px 0 0;
+            padding: 18px 56px 0;
         }
 
         .lang-btn {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
-            font-weight: 500;
-            letter-spacing: 0.06em;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
             color: var(--ink-soft);
             background: transparent;
             border: 1px solid var(--line);
             border-radius: var(--radius);
-            padding: 5px 12px;
+            padding: 5px 13px;
             cursor: pointer;
             transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
         }
 
-        .lang-btn:hover {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
-        }
-
-        .lang-btn:focus-visible {
-            outline: 2px solid var(--primary-color);
-            outline-offset: 2px;
-        }
-
-        .lang-btn.actif {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--white);
-        }
+        .lang-btn:hover { border-color: var(--brown); color: #8b6140; }
+        .lang-btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+        .lang-btn.actif { background-color: var(--brown); border-color: var(--brown); color: var(--white); }
 
         /* ---------- En-tete ---------- */
-        .header-wrapper {
-            padding: 14px 56px 0;
-        }
-
-        .header-bg {
-            background-color: transparent;
-            border-radius: 0;
+        .hero {
             display: flex;
             align-items: center;
-            gap: 28px;
-            padding: 18px 0 26px;
-            border-bottom: 1px solid var(--line);
+            gap: 30px;
+            padding: 6px 56px 0;
         }
 
         .profile-pic {
-            width: 132px;
-            height: 132px;
+            width: 134px;
+            height: 134px;
             border-radius: 50%;
             object-fit: cover;
             flex-shrink: 0;
-            background-color: #ccc;
+            background-color: #ddd;
             box-shadow: 0 0 0 1px var(--line);
         }
 
-        .header-content {
-            flex: 1;
-        }
+        .hero-text { flex: 1; }
 
-        .header-content h1 {
-            font-family: 'Sora', sans-serif;
-            color: var(--ink);
-            font-size: 2.15rem;
-            font-weight: 400;
-            letter-spacing: -0.02em;
+        .hero-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 2.1rem;
+            letter-spacing: 0.02em;
             line-height: 1.1;
-            margin-bottom: 8px;
+            color: var(--ink);
         }
 
-        .header-content h1 .font-light { font-weight: 400; color: var(--ink); }
-        .header-content h1 .font-bold { font-weight: 700; }
+        .hero-text h1 .font-bold { font-weight: 700; }
 
         .job-title {
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--primary-color);
-            font-size: 0.72rem;
-            font-weight: 500;
-            letter-spacing: 0.14em;
-            margin-bottom: 14px;
-            text-transform: uppercase;
+            font-size: 1.12rem;
+            color: var(--brown);
+            margin-top: 4px;
+            letter-spacing: 0.01em;
         }
 
-        .summary {
-            font-size: 0.86rem;
-            color: var(--ink-soft);
-            text-align: left;
-            line-height: 1.6;
-            max-width: 72ch;
-        }
-
-        /* ---------- Barre de contact ---------- */
-        .contact-bar {
+        .contact-row {
             display: flex;
-            justify-content: flex-start;
             flex-wrap: wrap;
+            justify-content: center;
             gap: 8px 26px;
-            margin-top: 0;
-            padding: 16px 56px;
-            position: relative;
-            z-index: 10;
-            border-bottom: 1px solid var(--line);
+            margin-top: 16px;
         }
 
         .contact-pill {
-            background-color: transparent;
-            color: var(--ink);
-            padding: 0;
-            border-radius: 0;
-            font-size: 0.82rem;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-family: 'Source Sans 3', sans-serif;
+            font-size: 0.82rem;
+            color: var(--ink-soft);
         }
 
-        .contact-pill i {
-            color: var(--primary-color);
-            font-size: 0.78rem;
-            width: 1em;
-            text-align: center;
+        .contact-pill i { color: var(--brown); width: 1em; text-align: center; }
+
+        .summary {
+            margin: 22px 56px 0;
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            line-height: 1.65;
+            text-align: justify;
+            hyphens: auto;
         }
 
-        .contact-pill a {
-            color: var(--ink);
-            text-decoration: none;
-        }
-
-
-        .contact-pill a:hover {
-            text-decoration: underline;
-        }
+        .summary .lead { color: var(--brown); font-weight: 700; }
 
         /* ---------- Corps ---------- */
-        .main-content {
-            display: flex;
-            padding: 38px 56px 20px;
-            gap: 42px;
-        }
+        .cv-body { padding: 26px 56px 0; }
 
-        .left-column { flex: 1; max-width: 33%; }
-        .right-column { flex: 2; }
+        section { margin-bottom: 26px; }
+
+        ul { list-style: none; padding-left: 0; }
 
         .section-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.72rem;
-            color: var(--primary-color);
+            font-weight: 700;
             text-transform: uppercase;
-            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            color: var(--brown);
+            border-bottom: 1px solid var(--brown-soft);
+            padding-bottom: 6px;
             margin-bottom: 16px;
-            letter-spacing: 0.14em;
-            border-bottom: 1px solid var(--line);
-            display: block;
-            padding-bottom: 8px;
         }
 
-        section { margin-bottom: 30px; }
+        /* ---------- Entrees (experience, formation) ---------- */
+        .item-block {
+            display: grid;
+            grid-template-columns: 26% 1fr;
+            column-gap: 28px;
+            margin-bottom: 20px;
+        }
 
-        ul { list-style-type: none; padding-left: 0; }
+        .entry-date {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            font-size: 0.66rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--brown);
+        }
 
-        .left-column ul li,
+        .entry-date::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            flex-shrink: 0;
+            background-color: var(--brown-soft);
+        }
+
+        .entry-org {
+            font-weight: 700;
+            font-size: 0.78rem;
+            color: var(--ink);
+            margin-top: 7px;
+        }
+
+        .entry-place { font-size: 0.72rem; color: var(--ink-soft); margin-top: 2px; }
+
+        .entry-body .item-title {
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            color: var(--ink);
+            margin-bottom: 6px;
+        }
+
+        .entry-body .item-title a { color: var(--ink); text-decoration: none; transition: color 0.2s ease; }
+        .entry-body .item-title a:hover { color: #8b6140; text-decoration: underline; }
+
         .exp-details li {
             position: relative;
             padding-left: 14px;
-            margin-bottom: 7px;
-            font-size: 0.85rem;
-            color: var(--text-color);
-            line-height: 1.45;
+            font-size: 0.78rem;
+            margin-bottom: 4px;
+            color: var(--ink);
+            text-align: justify;
+            hyphens: auto;
         }
 
-        .left-column ul li::before,
         .exp-details li::before {
+            content: "";
+            position: absolute;
+            left: 1px;
+            top: 0.6em;
+            width: 4px;
+            height: 4px;
+            background-color: var(--brown-soft);
+        }
+
+        .exp-details strong { color: var(--ink); font-weight: 600; }
+
+        /* ---------- Langues, competences, qualites ---------- */
+        .cols-3 {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr 1.2fr;
+            gap: 28px;
+        }
+
+        .cols-3 .section-title { margin-bottom: 12px; }
+
+        .cols-3 ul li {
+            position: relative;
+            padding-left: 13px;
+            font-size: 0.76rem;
+            margin-bottom: 4px;
+            color: var(--ink);
+        }
+
+        .cols-3 ul li::before {
             content: "";
             position: absolute;
             left: 1px;
             top: 0.58em;
             width: 4px;
             height: 4px;
-            background-color: var(--primary-color);
-            opacity: 0.55;
+            background-color: var(--brown-soft);
         }
 
-        .left-column strong { font-weight: 600; color: var(--ink); }
+        .cols-3 strong { color: var(--ink); font-weight: 600; }
 
-        .skill-group { margin-bottom: 14px; }
+        .skill-group { margin-bottom: 12px; }
 
         .skill-group-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.66rem;
-            font-weight: 600;
-            color: var(--ink-soft);
+            font-weight: 700;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 7px;
+            letter-spacing: 0.07em;
+            color: var(--brown);
+            margin-bottom: 6px;
         }
 
         .skill-group ul {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
+            columns: 2;
+            column-gap: 22px;
         }
 
-        .skill-group ul li {
-            padding: 3px 8px;
-            margin: 0;
-            font-size: 0.72rem;
-            background-color: transparent;
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            color: var(--ink-soft);
-            line-height: 1.35;
-        }
-
-        .skill-group ul li::before { content: none; }
-
-        .item-block {
-            margin-bottom: 18px;
-            padding-top: 14px;
-            border-top: 1px solid var(--line);
-        }
-
-        .section-title + .item-block {
-            padding-top: 0;
-            border-top: 0;
-        }
-
-        .item-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--ink);
-            letter-spacing: -0.01em;
-            margin-bottom: 3px;
-        }
-
-        .item-title a {
-            color: var(--ink);
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .item-title a:hover {
-            text-decoration: underline;
-            color: var(--primary-light);
-        }
-
-        .item-subtitle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--ink-soft);
-            margin-bottom: 6px;
-            font-weight: 400;
-            line-height: 1.45;
-        }
-
-        .exp-details { margin-top: 6px; }
-
-        .exp-details li {
-            margin-bottom: 4px;
-            text-align: left;
-        }
+        .skill-group ul li { break-inside: avoid; margin-bottom: 3px; }
 
         /* ---------- Projets ---------- */
-        .projects-section {
-            padding: 0 56px 24px;
-        }
+        .projects-section { padding: 0 56px; }
 
         .projects-grid {
             display: grid;
@@ -347,78 +296,77 @@
         }
 
         .project-card .item-title {
-            font-size: 0.86rem;
+            font-weight: 700;
+            font-size: 0.8rem;
             margin-bottom: 3px;
         }
 
+        .project-card .item-title a { color: var(--ink); text-decoration: none; transition: color 0.2s ease; }
+        .project-card .item-title a:hover { color: #8b6140; text-decoration: underline; }
+
         .project-card .item-subtitle {
-            font-family: 'Source Sans 3', sans-serif;
-            font-weight: 400;
-            font-size: 0.78rem;
+            font-size: 0.77rem;
+            color: var(--ink-soft);
             line-height: 1.45;
-            margin-bottom: 0;
         }
 
         /* ---------- Signature ---------- */
         .signature {
             margin: 22px 56px 0;
-            padding: 12px 0 0;
+            padding-top: 14px;
             border-top: 1px solid var(--line);
             text-align: right;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
             color: var(--ink-soft);
         }
 
         .signature strong {
             display: block;
-            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: 0.8rem;
             color: var(--ink);
-            font-size: 0.82rem;
-            font-weight: 600;
             margin-top: 4px;
-            letter-spacing: -0.01em;
         }
 
-        /* ---------- Boutons ---------- */
+        /* ---------- Bouton impression ---------- */
         .btn-print {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            background-color: var(--primary-color);
-            color: white;
+            background-color: var(--brown);
+            color: var(--white);
             border: none;
             padding: 13px 22px;
-            font-size: 0.88rem;
-            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
             font-weight: 600;
             border-radius: var(--radius);
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 10px 24px -12px rgba(48, 40, 40, 0.6);
             display: flex;
             align-items: center;
             gap: 10px;
             z-index: 1000;
-            transition: all 0.3s ease;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .btn-print:hover {
-            background-color: var(--primary-light);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            background-color: var(--brown-deep);
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px -14px rgba(48, 40, 40, 0.7);
         }
 
-        [hidden] { display: none !important; }
+        .btn-print:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
 
+        /* ---------- Ecran etroit ---------- */
         @media screen and (max-width: 768px) {
-            .header-wrapper { padding: 10px 20px 0; }
-            .header-bg { flex-direction: column; text-align: center; padding: 10px 0 22px; }
-            .header-content h1 { font-size: 1.8rem; }
-            .summary { max-width: none; }
-            .contact-bar { margin-top: 0; padding: 14px 20px; gap: 8px 18px; justify-content: center; }
-            .main-content { flex-direction: column; padding: 26px 20px 10px; gap: 30px; }
-            .left-column { max-width: 100%; }
-            .projects-section { padding: 0 20px 20px; }
+            .hero { flex-direction: column; text-align: center; padding: 10px 20px 0; }
+            .contact-row { justify-content: center; margin-top: 14px; }
+            .summary { margin: 18px 20px 0; text-align: left; }
+            .cv-body { padding: 22px 20px 0; }
+            .item-block { grid-template-columns: 1fr; row-gap: 6px; }
+            .cols-3 { grid-template-columns: 1fr; gap: 22px; }
+            .skill-group ul { columns: 1; }
+            .projects-section { padding: 0 20px; }
             .projects-grid { grid-template-columns: 1fr; }
             .signature { margin: 18px 20px 0; }
             .lang-bar { justify-content: center; padding: 14px 0 0; }
@@ -451,78 +399,56 @@
                 padding-bottom: 0 !important;
             }
 
-            .header-wrapper { padding: 0 !important; }
-
             .lang-bar,
             .btn-print { display: none !important; }
 
-            .item-title a {
-                text-decoration: none !important;
-                color: var(--ink) !important;
-            }
+            /* L'impression reprend la page web : en-tete, profil,
+               experiences, formation, competences, projets.
+               Les ecarts sont resserres pour tenir sur trois pages
+               sans laisser de zones vides. */
+            .hero { padding: 0 !important; gap: 14px !important; }
+            .profile-pic { width: 86px !important; height: 86px !important; }
+            .hero-text h1 { font-size: 1.42rem !important; }
+            .job-title { font-size: 0.88rem !important; margin-top: 1px !important; }
+            .contact-row { gap: 3px 16px !important; margin-top: 8px !important; justify-content: flex-start !important; }
+            .contact-pill { font-size: 0.68rem !important; }
 
-            .header-bg {
-                padding: 0 0 10px !important;
-                border-radius: 0 !important;
-                gap: 20px !important;
-                border-bottom: 1px solid var(--line) !important;
-            }
-            .profile-pic { width: 104px !important; height: 104px !important; }
-            .header-content h1 { font-size: 1.65rem !important; margin-bottom: 6px !important; }
-            .job-title { font-size: 0.64rem !important; margin-bottom: 8px !important; letter-spacing: 0.12em !important; }
-            .summary { font-size: 0.8rem !important; line-height: 1.5 !important; max-width: none !important; }
+            .summary { margin: 10px 0 0 !important; font-size: 0.76rem !important; line-height: 1.45 !important; }
 
-            .contact-bar {
-                margin-top: 0 !important;
-                padding: 9px 0 !important;
-                gap: 6px 20px !important;
-                border-bottom: 1px solid var(--line) !important;
-            }
-            .contact-pill { padding: 0 !important; font-size: 0.74rem !important; }
-
-            /* L'impression reprend la mise en page de l'ecran : deux
-               colonnes, competences a gauche, parcours a droite. Les
-               sections peuvent se poursuivre sur la page suivante sans
-               laisser de grands vides, mais un bloc reste insecable. */
-            .main-content {
-                display: flex !important;
-                flex-direction: row !important;
-                padding: 18px 0 10px !important;
-                gap: 26px !important;
-            }
-            .left-column { flex: 1 1 33% !important; max-width: 35% !important; }
-            .right-column { flex: 2 1 0 !important; min-width: 0 !important; }
-
-            section { margin-bottom: 14px !important; break-inside: auto !important; }
+            .cv-body { padding: 12px 0 0 !important; }
+            section { margin-bottom: 12px !important; break-inside: auto !important; }
             .section-title {
-                font-size: 0.69rem !important;
-                margin-bottom: 12px !important;
-                padding-bottom: 6px !important;
+                font-size: 0.86rem !important;
+                margin-bottom: 9px !important;
+                padding-bottom: 4px !important;
                 break-after: avoid !important;
             }
 
-            .item-block { margin-bottom: 12px !important; padding-top: 10px !important; }
-            .item-title { font-size: 0.88rem !important; margin-bottom: 2px !important; }
-            .item-subtitle { font-size: 0.68rem !important; margin-bottom: 4px !important; }
+            .item-block { grid-template-columns: 26% 1fr !important; column-gap: 18px !important; margin-bottom: 9px !important; }
+            .entry-date { font-size: 0.57rem !important; }
+            .entry-org { font-size: 0.7rem !important; margin-top: 4px !important; }
+            .entry-place { font-size: 0.61rem !important; }
+            .entry-body .item-title { font-size: 0.77rem !important; margin-bottom: 4px !important; }
+            .exp-details li { font-size: 0.74rem !important; margin-bottom: 2px !important; line-height: 1.38 !important; }
 
-            .left-column ul li { font-size: 0.81rem !important; margin-bottom: 4px !important; }
-            .exp-details li { font-size: 0.81rem !important; margin-bottom: 3px !important; line-height: 1.4 !important; }
-            .skill-group ul li { font-size: 0.71rem !important; padding: 2px 7px !important; }
-            .skill-group { margin-bottom: 9px !important; }
-            .skill-group-title { font-size: 0.62rem !important; margin-bottom: 5px !important; }
+            .cols-3 { grid-template-columns: 1fr 2.2fr 1.2fr !important; gap: 18px !important; }
+            .cols-3 ul li { font-size: 0.71rem !important; margin-bottom: 2px !important; }
+            .skill-group { margin-bottom: 7px !important; }
+            .skill-group-title { font-size: 0.59rem !important; margin-bottom: 3px !important; }
+            .skill-group ul li { font-size: 0.66rem !important; }
 
-            .projects-section { padding: 4px 0 8px !important; }
-            .projects-grid { gap: 0 24px !important; }
-            .project-card { padding: 7px 0 9px !important; }
-            .project-card .item-title { font-size: 0.82rem !important; margin-bottom: 2px !important; }
-            .project-card .item-subtitle { font-size: 0.75rem !important; line-height: 1.42 !important; }
+            .projects-section { padding: 0 !important; margin-top: 4px !important; }
+            .projects-grid { gap: 0 22px !important; }
+            .project-card { padding: 6px 0 7px !important; }
+            .project-card .item-title { font-size: 0.75rem !important; }
+            .project-card .item-subtitle { font-size: 0.69rem !important; line-height: 1.36 !important; }
 
-            .signature { margin: 12px 0 0 !important; padding-top: 9px !important; font-size: 0.64rem !important; }
-            .signature strong { font-size: 0.76rem !important; }
+            .signature { margin: 10px 0 0 !important; padding-top: 8px !important; font-size: 0.65rem !important; }
+            .signature strong { font-size: 0.75rem !important; }
 
             .item-block, .project-card { page-break-inside: avoid; break-inside: avoid; }
         }
-    </style>
+</style>
 </head>
 <body>
 
@@ -542,31 +468,139 @@
          ============================================================ -->
     <div class="lang-block" id="lang-fr">
 
-        <div class="header-wrapper">
-            <header class="header-bg">
-                <img src="img/moi-portrait.jpg" alt="Ulrich W. Kinda" class="profile-pic">
-                <div class="header-content">
-                    <h1>Ulrich W. <span class="font-bold">Kinda</span></h1>
-                    <div class="job-title">Ingénieur en technologie du génie informatique</div>
-                    <p class="summary">
-                        Ingénieur en Technologie du Génie Informatique, passionné par la conception et le développement de solutions numériques innovantes. Doté de compétences en développement web front-end et full-stack, en administration des systèmes et réseaux ainsi qu'en gestion de bases de données, je m'intéresse particulièrement à la création d'applications performantes et adaptées aux besoins des utilisateurs. Rigoureux, autonome et animé par une volonté constante d'apprendre, je souhaite mettre mes compétences au service de projets technologiques concrets et contribuer à leur réussite.
-                    </p>
-                </div>
-            </header>
-        </div>
-
-        <div class="contact-bar">
-            <div class="contact-pill"><i class="fas fa-envelope"></i> kindaulrich1@gmail.com</div>
+                <header class="hero">
+            <img src="img/moi-portrait.jpg" alt="Ulrich W. Kinda" class="profile-pic">
+            <div class="hero-text">
+                <h1>Ulrich W. <span class="font-bold">Kinda</span></h1>
+                <div class="job-title">Ingénieur en technologie du génie informatique</div>
+                <div class="contact-row">
+                    <div class="contact-pill"><i class="fas fa-envelope"></i> kindaulrich1@gmail.com</div>
             <div class="contact-pill"><i class="fas fa-phone"></i> +226 54 74 84 44</div>
             <div class="contact-pill"><i class="fas fa-map-marker-alt"></i> Ouagadougou, Burkina Faso</div>
-            <div class="contact-pill"><i class="fas fa-id-card"></i> Permis : A1, B, C</div>
+                <div class="contact-pill"><i class="fas fa-id-card"></i> Permis : A1, B, C</div>
+                </div>
+            </div>
+        </header>
+
+        <p class="summary"><span class="lead">Ingénieur en Technologie du Génie Informatique</span>, passionné par la conception et le développement de solutions numériques innovantes. Doté de compétences en développement web front-end et full-stack, en administration des systèmes et réseaux ainsi qu'en gestion de bases de données, je m'intéresse particulièrement à la création d'applications performantes et adaptées aux besoins des utilisateurs. Rigoureux, autonome et animé par une volonté constante d'apprendre, je souhaite mettre mes compétences au service de projets technologiques concrets et contribuer à leur réussite.
+                    </p>
+
+        <main class="cv-body">
+            <section>
+                    <div class="section-title">Expérience professionnelle</div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">Août - Septembre 2025</div>
+                <div class="entry-org">RIGO SARL</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Stagiaire en développement web</div>
+                <ul class="exp-details">
+                            <li><strong>Portfolio professionnel :</strong> conception, maquettage et développement front-end d'un site web interactif (HTML5, CSS3, JavaScript).</li>
+                            <li><strong>Application de traduction :</strong> développement full-stack d'une solution communautaire hybride avec base locale et API externe (PHP, MySQL, JavaScript).</li>
+                            <li><strong>Déploiement et administration :</strong> mise en ligne et gestion d'hébergement d'applications web (Vercel, Apache).</li>
+                        </ul>
+            </div>
         </div>
 
-        <main class="main-content">
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">Janvier - Avril 2026</div>
+                <div class="entry-org">RIGO SARL</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Stagiaire IA &amp; développement full-stack</div>
+                <ul class="exp-details">
+                            <li><strong>Projet Faso no-rêesa :</strong> traduction neuronale pour les cinq langues nationales du Burkina Faso (Mooré, Dioula, Fulfulde, Gourmanchéma, Haoussa).</li>
+                            <li><strong>Adaptation du modèle :</strong> affinage du modèle NLLB-200 par LoRA pour chaque langue cible.</li>
+                            <li><strong>Optimisation :</strong> ingénierie d'un corpus de 2,5 millions de phrases, réduit à 2,1 Go de RAM pour une exécution entièrement hors ligne sur CPU.</li>
+                            <li><strong>API et interface :</strong> développement d'une API FastAPI (Python) et d'une interface web responsive, tests de charge et évaluation SacreBLEU.</li>
+                        </ul>
+            </div>
+        </div>
 
-            <aside class="left-column">
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">Mai - Juillet 2026</div>
+                <div class="entry-org">ORANGE DIGITAL CENTER</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Formation développement full stack</div>
+                <ul class="exp-details">
+                            <li>Formation pratique intensive en développement full stack et conception d'applications de bout en bout.</li>
+                            <li><strong>Backend :</strong> développement avec Java et Spring Boot, conception d'API REST.</li>
+                            <li><strong>Frontend :</strong> développement avec Angular et TypeScript, intégration des services backend.</li>
+                            <li><strong>Projet de fin :</strong> SmartAgriMarket, conception et développement d'une application full stack dédiée au domaine agricole.</li>
+                        </ul>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2026</div>
+                <div class="entry-org">Property Consulting International (PCI Sarl)</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Informaticien</div>
+                <ul class="exp-details">
+                            <li><strong>Gestion du système d'information :</strong> assurer la maintenance et l'évolution des outils informatiques du cabinet d'études fiscales, juridiques et comptables.</li>
+                            <li><strong>Développement et sécurité :</strong> concevoir des solutions logicielles et gérer les bases de données en garantissant la propriété intellectuelle et la stricte confidentialité des informations stratégiques et financières.</li>
+                            <li><strong>Réversibilité et support :</strong> assurer la documentation technique, la remise des livrables et l'assistance post-déploiement pour garantir la continuité opérationnelle.</li>
+                            <li><strong>Collaboration transversale :</strong> travailler en étroite collaboration avec les équipes fiscales et juridiques pour aligner les solutions technologiques sur les besoins métiers.</li>
+                        </ul>
+            </div>
+        </div>
+                </section>
 
                 <section>
+                    <div class="section-title">Formation</div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2026</div>
+                <div class="entry-org">Université Aube Nouvelle</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Licence en technologie du génie informatique</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2023</div>
+                <div class="entry-org">Lycée Privé La Grâce</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Baccalauréat scientifique série D</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2019</div>
+                <div class="entry-org">Collège Saint Joseph Moukassa</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Brevet d'études du premier cycle</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2015</div>
+                <div class="entry-org">Lycée Privé Saint Augustin de Koudougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Certificat d'étude primaire</div>
+            </div>
+        </div>
+                </section>
+
+            <div class="cols-3"><section>
                     <div class="section-title">Langues</div>
                     <ul>
                         <li><strong>Mooré :</strong> langue maternelle</li>
@@ -645,84 +679,7 @@
                         <li>Esprit d'équipe</li>
                         <li>Capacité à expliquer clairement</li>
                     </ul>
-                </section>
-
-            </aside>
-
-            <div class="right-column">
-
-                <section>
-                    <div class="section-title">Expérience professionnelle</div>
-
-                    <div class="item-block">
-                        <div class="item-title">Stagiaire en développement web</div>
-                        <div class="item-subtitle">RIGO SARL, Ouagadougou | Août - Septembre 2025</div>
-                        <ul class="exp-details">
-                            <li><strong>Portfolio professionnel :</strong> conception, maquettage et développement front-end d'un site web interactif (HTML5, CSS3, JavaScript).</li>
-                            <li><strong>Application de traduction :</strong> développement full-stack d'une solution communautaire hybride avec base locale et API externe (PHP, MySQL, JavaScript).</li>
-                            <li><strong>Déploiement et administration :</strong> mise en ligne et gestion d'hébergement d'applications web (Vercel, Apache).</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Stagiaire IA &amp; développement full-stack</div>
-                        <div class="item-subtitle">RIGO SARL, Ouagadougou | Janvier - Avril 2026</div>
-                        <ul class="exp-details">
-                            <li><strong>Projet Faso no-rêesa :</strong> traduction neuronale pour les cinq langues nationales du Burkina Faso (Mooré, Dioula, Fulfulde, Gourmanchéma, Haoussa).</li>
-                            <li><strong>Adaptation du modèle :</strong> affinage du modèle NLLB-200 par LoRA pour chaque langue cible.</li>
-                            <li><strong>Optimisation :</strong> ingénierie d'un corpus de 2,5 millions de phrases, réduit à 2,1 Go de RAM pour une exécution entièrement hors ligne sur CPU.</li>
-                            <li><strong>API et interface :</strong> développement d'une API FastAPI (Python) et d'une interface web responsive, tests de charge et évaluation SacreBLEU.</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Formation développement full stack</div>
-                        <div class="item-subtitle">ORANGE DIGITAL CENTER | Mai - Juillet 2026</div>
-                        <ul class="exp-details">
-                            <li>Formation pratique intensive en développement full stack et conception d'applications de bout en bout.</li>
-                            <li><strong>Backend :</strong> développement avec Java et Spring Boot, conception d'API REST.</li>
-                            <li><strong>Frontend :</strong> développement avec Angular et TypeScript, intégration des services backend.</li>
-                            <li><strong>Projet de fin :</strong> SmartAgriMarket, conception et développement d'une application full stack dédiée au domaine agricole.</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Informaticien</div>
-                        <div class="item-subtitle">Property Consulting International (PCI Sarl), Ouagadougou | 2026</div>
-                        <ul class="exp-details">
-                            <li><strong>Gestion du système d'information :</strong> assurer la maintenance et l'évolution des outils informatiques du cabinet d'études fiscales, juridiques et comptables.</li>
-                            <li><strong>Développement et sécurité :</strong> concevoir des solutions logicielles et gérer les bases de données en garantissant la propriété intellectuelle et la stricte confidentialité des informations stratégiques et financières.</li>
-                            <li><strong>Réversibilité et support :</strong> assurer la documentation technique, la remise des livrables et l'assistance post-déploiement pour garantir la continuité opérationnelle.</li>
-                            <li><strong>Collaboration transversale :</strong> travailler en étroite collaboration avec les équipes fiscales et juridiques pour aligner les solutions technologiques sur les besoins métiers.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="section-title">Formation</div>
-
-                    <div class="item-block">
-                        <div class="item-title">Licence en technologie du génie informatique</div>
-                        <div class="item-subtitle">Université Aube Nouvelle | 2026</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Baccalauréat scientifique série D</div>
-                        <div class="item-subtitle">Lycée Privé La Grâce | 2023</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Brevet d'études du premier cycle</div>
-                        <div class="item-subtitle">Collège Saint Joseph Moukassa | 2019</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Certificat d'étude primaire</div>
-                        <div class="item-subtitle">Lycée Privé Saint Augustin de Koudougou | 2015</div>
-                    </div>
-                </section>
-
-            </div>
+                </section></div>
         </main>
 
         <section class="projects-section">
@@ -819,31 +776,140 @@
          ============================================================ -->
     <div class="lang-block" id="lang-en" hidden>
 
-        <div class="header-wrapper">
-            <header class="header-bg">
-                <img src="img/moi-portrait.jpg" alt="Ulrich W. Kinda" class="profile-pic">
-                <div class="header-content">
-                    <h1>Ulrich W. <span class="font-bold">Kinda</span></h1>
-                    <div class="job-title">Computer Engineering Technology Engineer</div>
-                    <p class="summary">
-                        Computer Engineering Technology graduate, passionate about designing and developing innovative digital solutions. With hands-on skills in front-end and full-stack web development, systems and network administration, and database management, I am particularly interested in building performant applications that fit the needs of their users. Rigorous, autonomous and driven by a constant desire to learn, I want to put my skills to work on concrete technology projects and contribute to their success.
-                    </p>
-                </div>
-            </header>
-        </div>
-
-        <div class="contact-bar">
-            <div class="contact-pill"><i class="fas fa-envelope"></i> kindaulrich1@gmail.com</div>
+                <header class="hero">
+            <img src="img/moi-portrait.jpg" alt="Ulrich W. Kinda" class="profile-pic">
+            <div class="hero-text">
+                <h1>Ulrich W. <span class="font-bold">Kinda</span></h1>
+                <div class="job-title">Computer Engineering Technology Engineer</div>
+                <div class="contact-row">
+                    <div class="contact-pill"><i class="fas fa-envelope"></i> kindaulrich1@gmail.com</div>
             <div class="contact-pill"><i class="fas fa-phone"></i> +226 54 74 84 44</div>
             <div class="contact-pill"><i class="fas fa-map-marker-alt"></i> Ouagadougou, Burkina Faso</div>
-            <div class="contact-pill"><i class="fas fa-id-card"></i> Driving licence: A1, B, C</div>
+                <div class="contact-pill"><i class="fas fa-id-card"></i> Driving licence: A1, B, C</div>
+                </div>
+            </div>
+        </header>
+
+        <p class="summary"><span class="lead">Computer Engineering Technology graduate</span>, passionate about designing and developing innovative digital solutions. With hands-on skills in front-end and full-stack web development, systems and network administration, and database management, I am particularly interested in building performant applications that fit the needs of their users. Rigorous, autonomous and driven by a constant desire to learn, I want to put my skills to work on concrete technology projects and contribute to their success.
+                    </p>
+
+        <main class="cv-body">
+            <section>
+                    <div class="section-title">Professional experience</div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">August - September 2025</div>
+                <div class="entry-org">RIGO SARL</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Web development intern</div>
+                <ul class="exp-details">
+                            <li><strong>Professional portfolio:</strong> design, prototyping and front-end development of an interactive website (HTML5, CSS3, JavaScript).</li>
+                            <li><strong>Translation application:</strong> full-stack development of a hybrid community solution with a local database and an external API (PHP, MySQL, JavaScript).</li>
+                            <li><strong>Deployment and administration:</strong> release and hosting management of web applications (Vercel, Apache).</li>
+                        </ul>
+            </div>
         </div>
 
-        <main class="main-content">
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">January - April 2026</div>
+                <div class="entry-org">RIGO SARL</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">AI &amp; full-stack development intern</div>
+                <ul class="exp-details">
+                            <li><strong>Faso no-rêesa project:</strong> neural translation for the five national languages of Burkina Faso (Mooré, Dioula, Fulfulde, Gourmanchéma, Haoussa).</li>
+                            <li><strong>Model adaptation:</strong> fine-tuning of the NLLB-200 model with LoRA for each target language.</li>
+                            <li><strong>Optimisation:</strong> engineering of a 2.5 million sentence corpus, reduced to 2.1 GB of RAM for a fully offline CPU run.</li>
+                            <li><strong>API and interface:</strong> development of a FastAPI (Python) API and a responsive web interface, load testing and SacreBLEU evaluation.</li>
+                        </ul>
+            </div>
+        </div>
 
-            <aside class="left-column">
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">May - July 2026</div>
+                <div class="entry-org">ORANGE DIGITAL CENTER</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Full stack development training</div>
+                <ul class="exp-details">
+                            <li>Intensive practical training in full stack development and end-to-end application design.</li>
+                            <li><strong>Backend:</strong> development with Java and Spring Boot, REST API design.</li>
+                            <li><strong>Frontend:</strong> development with Angular and TypeScript, integration of the backend services.</li>
+                            <li><strong>Final project:</strong> SmartAgriMarket, design and development of a full stack application dedicated to the agricultural sector.</li>
+                        </ul>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2026</div>
+                <div class="entry-org">Property Consulting International (PCI Sarl)</div>
+                <div class="entry-place">Ouagadougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">IT Specialist</div>
+                <ul class="exp-details">
+                            <li><strong>Information system management:</strong> maintain and evolve the IT tools of the accounting, tax and legal consulting firm.</li>
+                            <li><strong>Development and security:</strong> design software solutions and manage the databases while safeguarding intellectual property and the strict confidentiality of strategic and financial information.</li>
+                            <li><strong>Reversibility and support:</strong> prepare the technical documentation, hand over the deliverables and provide post-deployment assistance to guarantee operational continuity.</li>
+                            <li><strong>Cross-team collaboration:</strong> work closely with the tax and legal teams to align the technology solutions with the business needs.</li>
+                        </ul>
+            </div>
+        </div>
+                </section>
 
                 <section>
+                    <div class="section-title">Education</div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2026</div>
+                <div class="entry-org">Aube Nouvelle University</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Bachelor in Computer Engineering Technology</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2023</div>
+                <div class="entry-org">La Grâce Private High School</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Scientific high school diploma, series D</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2019</div>
+                <div class="entry-org">Saint Joseph Moukassa Middle School</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Junior high school certificate</div>
+            </div>
+        </div>
+
+                    <div class="item-block">
+            <div class="item-meta">
+                <div class="entry-date">2015</div>
+                <div class="entry-org">Saint Augustin Private School</div>
+                <div class="entry-place">Koudougou</div>
+            </div>
+            <div class="entry-body">
+                <div class="item-title">Primary school certificate</div>
+            </div>
+        </div>
+                </section>
+
+            <div class="cols-3"><section>
                     <div class="section-title">Languages</div>
                     <ul>
                         <li><strong>Mooré:</strong> native language</li>
@@ -922,84 +988,7 @@
                         <li>Team spirit</li>
                         <li>Clear communication</li>
                     </ul>
-                </section>
-
-            </aside>
-
-            <div class="right-column">
-
-                <section>
-                    <div class="section-title">Professional experience</div>
-
-                    <div class="item-block">
-                        <div class="item-title">Web development intern</div>
-                        <div class="item-subtitle">RIGO SARL, Ouagadougou | August - September 2025</div>
-                        <ul class="exp-details">
-                            <li><strong>Professional portfolio:</strong> design, prototyping and front-end development of an interactive website (HTML5, CSS3, JavaScript).</li>
-                            <li><strong>Translation application:</strong> full-stack development of a hybrid community solution with a local database and an external API (PHP, MySQL, JavaScript).</li>
-                            <li><strong>Deployment and administration:</strong> release and hosting management of web applications (Vercel, Apache).</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">AI &amp; full-stack development intern</div>
-                        <div class="item-subtitle">RIGO SARL, Ouagadougou | January - April 2026</div>
-                        <ul class="exp-details">
-                            <li><strong>Faso no-rêesa project:</strong> neural translation for the five national languages of Burkina Faso (Mooré, Dioula, Fulfulde, Gourmanchéma, Haoussa).</li>
-                            <li><strong>Model adaptation:</strong> fine-tuning of the NLLB-200 model with LoRA for each target language.</li>
-                            <li><strong>Optimisation:</strong> engineering of a 2.5 million sentence corpus, reduced to 2.1 GB of RAM for a fully offline CPU run.</li>
-                            <li><strong>API and interface:</strong> development of a FastAPI (Python) API and a responsive web interface, load testing and SacreBLEU evaluation.</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Full stack development training</div>
-                        <div class="item-subtitle">ORANGE DIGITAL CENTER | May - July 2026</div>
-                        <ul class="exp-details">
-                            <li>Intensive practical training in full stack development and end-to-end application design.</li>
-                            <li><strong>Backend:</strong> development with Java and Spring Boot, REST API design.</li>
-                            <li><strong>Frontend:</strong> development with Angular and TypeScript, integration of the backend services.</li>
-                            <li><strong>Final project:</strong> SmartAgriMarket, design and development of a full stack application dedicated to the agricultural sector.</li>
-                        </ul>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">IT Specialist</div>
-                        <div class="item-subtitle">Property Consulting International (PCI Sarl), Ouagadougou | 2026</div>
-                        <ul class="exp-details">
-                            <li><strong>Information system management:</strong> maintain and evolve the IT tools of the accounting, tax and legal consulting firm.</li>
-                            <li><strong>Development and security:</strong> design software solutions and manage the databases while safeguarding intellectual property and the strict confidentiality of strategic and financial information.</li>
-                            <li><strong>Reversibility and support:</strong> prepare the technical documentation, hand over the deliverables and provide post-deployment assistance to guarantee operational continuity.</li>
-                            <li><strong>Cross-team collaboration:</strong> work closely with the tax and legal teams to align the technology solutions with the business needs.</li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section>
-                    <div class="section-title">Education</div>
-
-                    <div class="item-block">
-                        <div class="item-title">Bachelor in Computer Engineering Technology</div>
-                        <div class="item-subtitle">Aube Nouvelle University | 2026</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Scientific high school diploma, series D</div>
-                        <div class="item-subtitle">La Grâce Private High School | 2023</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Junior high school certificate</div>
-                        <div class="item-subtitle">Saint Joseph Moukassa Middle School | 2019</div>
-                    </div>
-
-                    <div class="item-block">
-                        <div class="item-title">Primary school certificate</div>
-                        <div class="item-subtitle">Saint Augustin Private School, Koudougou | 2015</div>
-                    </div>
-                </section>
-
-            </div>
+                </section></div>
         </main>
 
         <section class="projects-section">
